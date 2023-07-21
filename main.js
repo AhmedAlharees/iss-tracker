@@ -1,55 +1,63 @@
-
 const apiUrl = "https://api.wheretheiss.at/v1/satellites/25544";
-let map; // Declare the map variable outside the functions
+let map;
+let marker;
+let cachedData; // Store the cached response
 
-async function getIssCoords() {
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    updateMap(data.latitude, data.longitude); // Call the function to update the marker
-  } catch (error) {
-    console.error("Error fetching ISS coordinates:", error);
-  }
-}
-
-function updateMap(latitude, longitude) {
+function initMap(latitude, longitude) {
+  // Initialize the map only if it's not already initialized
   if (!map) {
-    // Initialize the map only if it's not already initialized
     map = L.map("map").setView([latitude, longitude], 4);
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
-  } else {
-    // If the map is already initialized, just update the marker's position
-    map.setView([latitude, longitude]);
-  }
 
-  // Update or create the marker
-  let myIcon = L.icon({
-    iconUrl: './images/ISS.svg',
-    iconSize: [90, 95],
-    iconAnchor: [22, 94],
-    popupAnchor: [-3, -76],
-});
-  if (!map.marker) {
-    map.marker = L.marker([latitude, longitude], {icon: myIcon})
+    // Create the marker for the first time
+    let myIcon = L.icon({
+      iconUrl: "./images/ISS.svg",
+      iconSize: [90, 95],
+      iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+    });
+    marker = L.marker([latitude, longitude], { icon: myIcon })
       .addTo(map)
-      .openPopup()
-  } else {
-    map.marker.setLatLng([latitude, longitude]);
+      .openPopup();
   }
 }
 
-// Call the getIssCoords initially
-getIssCoords();
+async function updateMarker() {
+  try {
+    let data;
+    if (cachedData && Date.now() - cachedData.timestamp < 5000) {
+      // Use the cached data if it's available and not expired (5 seconds cache)
+      data = cachedData.data;
+    } else {
+      const response = await fetch(apiUrl);
+      data = await response.json();
+      // Cache the response along with the current timestamp
+      cachedData = { data, timestamp: Date.now() };
+    }
+    marker.setLatLng([data.latitude, data.longitude]);
+  } catch (error) {
+    console.error("Error fetching ISS coordinates:", error);
+  }
+}
 
-// Update the ISS coordinates every second
-setInterval(getIssCoords, 1000);
+// Initial setup
+async function setup() {
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    initMap(data.latitude, data.longitude);
+    setInterval(updateMarker, 1000); // Update the marker every second
+  } catch (error) {
+    console.error("Error fetching ISS coordinates:", error);
+  }
+}
 
-// getting the date for the copyright
+setup();
 
-const dateElement = document.querySelector('.copyright_date');
+const dateElement = document.querySelector(".copyright_date");
 const date = new Date();
-dateElement.textContent += `${date.getFullYear()}`
+dateElement.textContent += `${date.getFullYear()}`;

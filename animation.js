@@ -20,13 +20,3 @@ tl.to('.char', {
     yoyo: true,
     ease: 'power2.inOut'
 })
-
-
-// animation for the stars
-
-gsap.to('.stars', {
-    opacity: 1,
-    duration: 1,
-    yoyo: true,
-    ease: 'power1.out'
-})

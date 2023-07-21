@@ -88,7 +88,7 @@ section {
 }
 
 .page-landing {
-  background: url("./images/planet-view.jpg") no-repeat center;
+  background: url("/images/planet-view.jpg") no-repeat center;
   z-index: 1;
 }
 .page-landing .page__txt {
