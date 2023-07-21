@@ -20,7 +20,7 @@ Welcome to the ISS Tracker website! This website allows you to track the real-ti
 
 - ISS Position Data API: [www.wheretheiss.at](https://wheretheiss.at/w/developer)
 - Map Library: Leaflet.js : [www.leafletjs.com](https://leafletjs.com/index.html)
-- Frontend: HTML, CSS, JavaScript
+- Frontend: HTML, CSS, JavaScript, GSAP, web API
 
 ## About the ISS
 
