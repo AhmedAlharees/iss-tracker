@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/favicon.ico">
+    <!-- font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <!-- leaflet link -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- split type library -->
+    <script src="https://unpkg.com/split-type"></script>
+    <!-- GSAP file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+        integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- JS animation file -->
+    <script src="animation.js" defer></script>
+    <!-- main JavsScript file -->
+    <script src="main.js" defer></script>
+    <!-- CSS style -->
+    <link rel="stylesheet" href="./dist/css/style.css">
+    <title>ISS Tracker</title>
+</head>
+
+<body>
+    <main>
+        <section class="page-landing particles-js">
+            <div class="page__txt">
+                <h1 class="page__header">ISS Tracker</h1>
+                <p class="page__para">Follow the International Space Station's Journey!</p>
+            </div>
+            <div class="downward-arrow">
+                <img src="./images/down-arrow.svg" alt="down arrow icon">
+            </div>
+        </section>
+
+        <section class="track">
+            <div id="map"></div>
+        </section>
+    </main>
+    <footer>
+        <div>
+            <p class="copyright_date">&copy;</p>
+        </div>
+        <div class="github">
+            <img src="./images/Github_logo_svg.svg" alt="github logo">
+            <a href="https://github.com/AhmedAlharees" target="_blank">Ahmed Alharees</a>
+        </div>
+    </footer>
+    <!-- <div class="noise"></div> -->
+</body>
+
+</html>
