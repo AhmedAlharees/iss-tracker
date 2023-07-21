@@ -9,20 +9,17 @@ function initMap(latitude, longitude) {
     map = L.map("map").setView([latitude, longitude], 4);
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
     // Create the marker for the first time
     let myIcon = L.icon({
-      iconUrl: "./images/ISS.svg",
+      iconUrl: './images/ISS.svg',
       iconSize: [90, 95],
       iconAnchor: [22, 94],
       popupAnchor: [-3, -76],
     });
-    marker = L.marker([latitude, longitude], { icon: myIcon })
-      .addTo(map)
-      .openPopup();
+    marker = L.marker([latitude, longitude], { icon: myIcon }).addTo(map).openPopup();
   }
 }
 
@@ -58,6 +55,8 @@ async function setup() {
 
 setup();
 
-const dateElement = document.querySelector(".copyright_date");
+// getting the date for the copyright
+
+const dateElement = document.querySelector('.copyright_date');
 const date = new Date();
-dateElement.textContent += `${date.getFullYear()}`;
+dateElement.textContent += `${date.getFullYear()}`
